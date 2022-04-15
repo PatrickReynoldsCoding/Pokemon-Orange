@@ -2,7 +2,6 @@ require 'csv'
 poke = CSV.read("csv/Kanto Pokemon Spreadsheet.csv")
 
 
-#File.open('csv/Kanto Pokemon Spreadsheet.csv', "r") do |poke|
 
 puts "pick your pokemon!"
 choice = gets.chomp
