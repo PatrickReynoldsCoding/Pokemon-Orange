@@ -1,5 +1,7 @@
 #Global Variabl
 #methods
+
+require_relative "./pokemon.rb"
 def new_game
 
     Float time_wait = 1
