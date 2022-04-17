@@ -17,9 +17,9 @@ class Bulbasaur
     end
   end
   
-  a = Bulbasaur.new(rand(19..20), rand(9..10), rand(9..10), rand(11..12), rand(9..10))
+  seedyboi = Bulbasaur.new(rand(19..20), rand(9..10), rand(9..10), rand(11..12), rand(9..10))
   
-  puts a.attributes
-  puts "hello"
+  puts seedyboi.attributes
+ 
   # attr_accessor :name,'bulbasaur', :type,'Grass' - need to get this to work
   
