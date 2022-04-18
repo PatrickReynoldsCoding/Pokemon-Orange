@@ -16,6 +16,17 @@ class Pokedex
   end
 end
 
+class MoveMatch
+  def initialize(cvs_path)
+    @move_data = CSV.read('csv/Pokemon Moves.csv')
+  end
+
+  def get_move_info(name)
+    @move_data.find {|row| row[1] == name }
+  end
+end
+
+$moveMatch = MoveMatch.new('csv/Pokemon Moves.csv')
 
 $pokedex = Pokedex.new('csv/Kanto Pokemon Spreadsheet.csv')
 randEncount = Pokedex.new('csv/Kanto Pokemon Spreadsheet.csv')
@@ -27,26 +38,48 @@ puts "you picked #{$pokedex.get_stats_name($choice1)[1]}(HP:#{$pokedex.get_stats
 
 partner1 = $pokedex.get_stats_name($choice1)
 
-randPoke = (0 + rand(151)).to_s
+$randpoke = (0 + rand(151)).to_s
 
 puts "Oh no!"
-puts "a wild #{$pokedex.get_stats_id(randPoke)[1]}(HP:#{$pokedex.get_stats_id(randPoke)[4]})(Atk:#{$pokedex.get_stats_id(randPoke)[5]}) appeared!"
+puts "a wild #{$pokedex.get_stats_id($randpoke)[1]}(HP:#{$pokedex.get_stats_id($randpoke)[4]})(Atk:#{$pokedex.get_stats_id($randpoke)[5]}) appeared!"
 
 #pat1Atk = $pokedex.get_stats_name($choice1)[5] /3
 
 
-def moveList(x,y)
+def movePick(x,y)
+  move1 = x.get_stats_name(y)[10]
+  move2 = x.get_stats_name(y)[11]
+  move3 = x.get_stats_name(y)[12]
+  move4 = x.get_stats_name(y)[13]
   puts ""
   puts "Pick a move"
-  puts "1. #{x.get_stats_name(y)[10]}" 
-  puts "2. #{x.get_stats_name(y)[11]}" 
-  puts "3. #{x.get_stats_name(y)[12]}" 
-  puts "4. #{x.get_stats_name(y)[13]}" 
+  puts "1. #{move1} (#{$moveMatch.get_move_info(move1)[5]})" 
+  puts "2. #{move2} (#{$moveMatch.get_move_info(move2)[5]})" 
+  puts "3. #{move3} (#{$moveMatch.get_move_info(move3)[5]})" 
+  puts "4. #{move4} (#{$moveMatch.get_move_info(move4)[5]})" 
+input = gets.chomp
+
+input case 
+  when 1 
+  puts "#{$choice1} used #{move1}!"
+  atk = $moveMatch.get_move_info(move1)[5]
+  $cpu_hp -= atk 
+  puts $cpu_hp
+  else
+  error
+  end
 end
 
 
 
 def newRound
+$my_hp = $pokedex.get_stats_name($choice1)[4]
+$cpu_hp = $pokedex.get_stats_id($randpoke)[4]
+
+puts "What do you want to do?"
+puts""
+puts "#{$pokedex.get_stats_name($choice1)[1]}(HP:#{$pokedex.get_stats_name($choice1)[4]})(Atk:#{$pokedex.get_stats_name($choice1)[5]})"
+
   puts "1. Attack"
   puts "2. Pokemon"
   puts "3. Bag"
@@ -54,10 +87,13 @@ def newRound
   roundInput = gets.chomp
 
   if roundInput == "1"
-    then puts moveList($pokedex, $choice1)
+    then puts movePick($pokedex, $choice1)
     else 
       puts "error"
   end
+
+
+
 
 end
 
