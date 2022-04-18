@@ -1,11 +1,19 @@
 require 'csv'
-$pokedex = CSV.read("csv/Kanto Pokemon Spreadsheet.csv")
 
 
-def get_stats(name, source = $pokedex)
-  $pokedex.find {|row| row[1] == name}
+
+class Pokedex
+  def initialize(csv_path)
+    @pokemon_data = CSV.read('csv/Kanto Pokemon Spreadsheet.csv')
+  end
+
+  def get_stats(name)
+    @pokemon_data.find {|row| row[1] == name }
+  end
 end
+pokedex = Pokedex.new('csv/Kanto Pokemon Spreadsheet.csv')
 
+=begin
 class PlayerInfo
     attr_accessor :hp, :attack, :defence, :speed, :special # these symbols are the attributes for the "bulbasaur" objects we're creating below
   
@@ -19,6 +27,7 @@ class PlayerInfo
       @special = special
     end
   end
+=end
 
 
 puts "pick your pokemon!"
@@ -32,7 +41,7 @@ x = gets.chomp
 
 if x == "y"
 then
-puts get_stats(choice1)
+puts pokedex.get_stats(choice1)
 end
 
 
