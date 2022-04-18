@@ -1,5 +1,7 @@
 require 'csv'
 
+$my_hp = 0 
+$cpu_hp = 0
 
 
 class Pokedex
@@ -46,58 +48,70 @@ puts "a wild #{$pokedex.get_stats_id($randpoke)[1]}(HP:#{$pokedex.get_stats_id($
 #pat1Atk = $pokedex.get_stats_name($choice1)[5] /3
 
 
-def movePick(x,y)
-  move1 = x.get_stats_name(y)[10]
+def move_pick(x,y)
+  move1 = [x.get_stats_name(y)[10], $moveMatch.get_move_info(x.get_stats_name(y)[10])[5]]
   move2 = x.get_stats_name(y)[11]
   move3 = x.get_stats_name(y)[12]
   move4 = x.get_stats_name(y)[13]
   puts ""
   puts "Pick a move"
-  puts "1. #{move1} (#{$moveMatch.get_move_info(move1)[5]})" 
+  puts "1. #{move1}" 
   puts "2. #{move2} (#{$moveMatch.get_move_info(move2)[5]})" 
   puts "3. #{move3} (#{$moveMatch.get_move_info(move3)[5]})" 
   puts "4. #{move4} (#{$moveMatch.get_move_info(move4)[5]})" 
-input = gets.chomp
+chosen_move = gets.chomp
 
-input case 
-  when 1 
-  puts "#{$choice1} used #{move1}!"
-  atk = $moveMatch.get_move_info(move1)[5]
-  $cpu_hp -= atk 
-  puts $cpu_hp
+puts "enemy HP:#{$cpu_hp}"
+
+if chosen_move == "1"
+    then $cpu_hp =-  move1[1]
   else
-  error
-  end
+    "error"
+end
+puts "you attack!"
+puts "enemy HP: #{$cpu_hp}"
+
+
+
+
 end
 
 
 
-def newRound
-$my_hp = $pokedex.get_stats_name($choice1)[4]
-$cpu_hp = $pokedex.get_stats_id($randpoke)[4]
 
-puts "What do you want to do?"
-puts""
-puts "#{$pokedex.get_stats_name($choice1)[1]}(HP:#{$pokedex.get_stats_name($choice1)[4]})(Atk:#{$pokedex.get_stats_name($choice1)[5]})"
+def new_round
+
+  $my_hp =+ $pokedex.get_stats_name($choice1)[4]
+  $cpu_hp =+ $pokedex.get_stats_id($randpoke)[4]
+
+
+  puts "What do you want to do?"
+  puts""
+  puts "#{$pokedex.get_stats_name($choice1)[1]}(HP:#{$pokedex.get_stats_name($choice1)[4]})(Atk:#{$pokedex.get_stats_name($choice1)[5]})"
 
   puts "1. Attack"
   puts "2. Pokemon"
   puts "3. Bag"
   puts "4. Run"
-  roundInput = gets.chomp
+  round_input = gets.chomp
 
-  if roundInput == "1"
-    then puts movePick($pokedex, $choice1)
+  if round_input == "1"
+    then puts move_pick($pokedex, $choice1)
     else 
       puts "error"
   end
 
+  if $cpu_hp >= 1 
+    then move_pick
+  else
+    puts "You defeated the enemy!"
+  end
 
 
 
 end
 
-puts newRound
+puts new_round
 
 
 =begin
