@@ -76,13 +76,13 @@ puts "enemy HP: #{$cpu_hp}"
 
 end
 
-
+proc_hp_edit = -> {$my_hp =+ $pokedex.get_stats_name($choice1)[4]}
+proc_cpu_hp_edit = -> {$cpu_hp =+ $pokedex.get_stats_id($randpoke)[4]}
 
 
 def new_round
 
-  $my_hp =+ $pokedex.get_stats_name($choice1)[4]
-  $cpu_hp =+ $pokedex.get_stats_id($randpoke)[4]
+ 
 
 
   puts "What do you want to do?"
