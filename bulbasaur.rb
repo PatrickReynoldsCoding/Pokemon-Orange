@@ -23,3 +23,4 @@ class Bulbasaur
  
   # attr_accessor :name,'bulbasaur', :type,'Grass' - need to get this to work
   
+  testtest
