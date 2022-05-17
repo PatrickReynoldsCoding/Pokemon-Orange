@@ -1,8 +1,8 @@
 #Global Variabl
 #methods
 
-require_relative "./pokemon.rb"
-def new_game
+#no longer in use: require_relative "./pokemon.rb"
+def open_crawl
 
     Float time_wait = 1
   
@@ -53,42 +53,51 @@ def new_game
     
     puts "Let's go!"
   
-  end
+end
   
-  def starter_pick
+def starter_pick
   puts "Who do you want"
   puts "1. Bulbasaur"
   puts "2. Charmander"
   puts "3. Squirtle"
   
-  a = gets.chomp
-  if a.to_i == 1 then puts "You picked Bulbasaur!"
-  elsif a.to_i == 2 then puts "Goodbye."
+  choice = gets.chomp
+  if choice.to_i == 1 then puts "You picked Bulbasaur!"
+  elsif choice.to_i == 2 then puts "Goodbye."
   end
-  end
+end
   
-  #end of methods
-  
+def start_menu
   puts "1. Start new game"
   puts "2. quit"
+
+  choice = gets.chomp
   
-  
-  a = gets.chomp
-  
-  if a.to_i == 1 then puts new_game 
-  elsif a.to_i == 2 then puts "Goodbye."
+  if choice.to_i == 1 then puts open_crawl 
+  elsif choice.to_i == 2 then puts "Goodbye."
   end
-  
+end
+
+def oaks_desk
   puts "You see 3 Pokeballs. Each is labled: 1. Bulbasaur 2. Charmander 3. Squirtle"
   
   puts "What do you want to do?"
   puts "1. Pick Partner!"
   puts "2. view stats"
   
-  a = gets.chomp
+  choice = gets.chomp
   
-  if a.to_i == 1 then puts starter_pick
-  elsif a.to_i == 2 then puts starter_stats 
+  if choice.to_i == 1 then puts starter_pick
+  elsif choice.to_i == 2 then puts starter_stats 
   end
-  
-  
+end
+
+
+start_menu
+
+
+#add catch pokemon
+  #1. rand pokemon = caught
+  #2 add catching screen with 4 options
+#save team
+#load team
