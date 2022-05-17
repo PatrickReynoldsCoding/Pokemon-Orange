@@ -2,6 +2,17 @@
 #methods
 
 #no longer in use: require_relative "./pokemon.rb"
+
+def start_menu
+  puts "1. Start new game"
+  puts "2. quit"
+
+  choice = gets.chomp
+  
+  if choice.to_i == 1 then puts open_crawl 
+  elsif choice.to_i == 2 then puts "Goodbye."
+  end
+end
 def open_crawl
 
     Float time_wait = 1
@@ -54,30 +65,6 @@ def open_crawl
     puts "Let's go!"
   
 end
-  
-def starter_pick
-  puts "Who do you want"
-  puts "1. Bulbasaur"
-  puts "2. Charmander"
-  puts "3. Squirtle"
-  
-  choice = gets.chomp
-  if choice.to_i == 1 then puts "You picked Bulbasaur!"
-  elsif choice.to_i == 2 then puts "Goodbye."
-  end
-end
-  
-def start_menu
-  puts "1. Start new game"
-  puts "2. quit"
-
-  choice = gets.chomp
-  
-  if choice.to_i == 1 then puts open_crawl 
-  elsif choice.to_i == 2 then puts "Goodbye."
-  end
-end
-
 def oaks_desk
   puts "You see 3 Pokeballs. Each is labled: 1. Bulbasaur 2. Charmander 3. Squirtle"
   
@@ -91,7 +78,17 @@ def oaks_desk
   elsif choice.to_i == 2 then puts starter_stats 
   end
 end
-
+def starter_pick
+  puts "Who do you want"
+  puts "1. Bulbasaur"
+  puts "2. Charmander"
+  puts "3. Squirtle"
+  
+  choice = gets.chomp
+  if choice.to_i == 1 then puts "You picked Bulbasaur!"
+  elsif choice.to_i == 2 then puts "Goodbye."
+  end
+end
 
 start_menu
 

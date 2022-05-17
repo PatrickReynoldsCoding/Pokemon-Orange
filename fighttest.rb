@@ -34,7 +34,7 @@ $pokedex = Pokedex.new('csv/Kanto Pokemon Spreadsheet.csv')
 randEncount = Pokedex.new('csv/Kanto Pokemon Spreadsheet.csv')
 
 puts "pick your pokemon!"
-$choice1 = gets.chomp
+$choice1 = gets.chomp.capitalize
 
 puts "you picked #{$pokedex.get_stats_name($choice1)[1]}(HP:#{$pokedex.get_stats_name($choice1)[4]})(Atk:#{$pokedex.get_stats_name($choice1)[5]})!" 
 
@@ -81,10 +81,6 @@ proc_cpu_hp_edit = -> {$cpu_hp =+ $pokedex.get_stats_id($randpoke)[4]}
 
 
 def new_round
-
- 
-
-
   puts "What do you want to do?"
   puts""
   puts "#{$pokedex.get_stats_name($choice1)[1]}(HP:#{$pokedex.get_stats_name($choice1)[4]})(Atk:#{$pokedex.get_stats_name($choice1)[5]})"
@@ -107,12 +103,12 @@ def new_round
     puts "You defeated the enemy!"
   end
 
-#test
+
 
 
 end
 
-puts new_round
+new_round
 
 #test
 
