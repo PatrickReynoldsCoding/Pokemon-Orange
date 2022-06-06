@@ -6,7 +6,7 @@ $cpu_hp = 0
 
 class Pokedex
   def initialize(csv_path)
-    @pokemon_data = CSV.read('csv/Kanto Pokemon Spreadsheet.csv')
+    @pokemon_data = CSV.read(csv_path)
   end
 
   def get_stats_name(name)
@@ -20,7 +20,7 @@ end
 
 class MoveMatch
   def initialize(cvs_path)
-    @move_data = CSV.read('csv/Pokemon Moves.csv')
+    @move_data = CSV.read(cvs_path)
   end
 
   def get_move_info(name)
